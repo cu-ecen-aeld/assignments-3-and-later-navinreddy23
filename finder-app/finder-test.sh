@@ -5,7 +5,7 @@
 set -e
 set -u
 
-make clean && make all
+#make clean && make all
 
 NUMFILES=10
 WRITESTR=AELD_IS_FUN
