@@ -49,6 +49,7 @@ if [ ! -e ${OUTDIR}/linux-stable/arch/${ARCH}/boot/Image ]; then
 fi
 
 echo "Adding the Image in outdir"
+cp ${OUTDIR}/linux-stable/arch/${ARCH}/boot/Image ${OUTDIR}/
 
 echo "Creating the staging directory for the root filesystem"
 cd "$OUTDIR"
@@ -124,7 +125,7 @@ find . | cpio -H newc -ov --owner root:root > ${OUTDIR}/initramfs.cpio
 
 # TODO: Create initramfs.cpio.gz
 gzip -f ${OUTDIR}/initramfs.cpio
-cp ${OUTDIR}/linux-stable/arch/${ARCH}/boot/Image ${OUTDIR}/
+
 
 du -h ${OUTDIR}/initramfs.cpio.gz
 du -h ${OUTDIR}/Image
