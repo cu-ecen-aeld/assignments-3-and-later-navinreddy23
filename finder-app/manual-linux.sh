@@ -65,7 +65,6 @@ echo "Creating necessary directories in ${PWD}"
 mkdir -p bin dev etc home lib lib64 proc sbin sys tmp usr var
 mkdir -p usr/bin usr/lib usr/sbin
 mkdir -p var/log
-tree -L 2
 
 cd "$OUTDIR"
 if [ ! -d "${OUTDIR}/busybox" ]
@@ -124,8 +123,8 @@ sudo chown -R root:root *
 find . | cpio -H newc -ov --owner root:root > ${OUTDIR}/initramfs.cpio
 
 # TODO: Create initramfs.cpio.gz
+cd ${OUTDIR}
 gzip -f ${OUTDIR}/initramfs.cpio
 
-
-du -h ${OUTDIR}/initramfs.cpio.gz
-du -h ${OUTDIR}/Image
+#du -h ${OUTDIR}/initramfs.cpio.gz
+#du -h ${OUTDIR}/Image
