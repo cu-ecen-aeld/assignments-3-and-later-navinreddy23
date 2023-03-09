@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 if [ "$#" -ne 2 ]; then
   echo "Expected arg count is 2"
