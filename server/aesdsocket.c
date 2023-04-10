@@ -19,6 +19,7 @@
 #define BACKLOG 10   // how many pending connections queue will hold
 #define FILE_NAME "/var/tmp/aesdsocketdata"
 int sockfd, new_fd;
+FILE* fp = NULL;
 
 void sock_cleanup_handler(int s)
 {
@@ -51,6 +52,10 @@ void sock_cleanup_handler(int s)
 	{
 		syslog(LOG_ERR, "Closing new_fd failed: %d", e);
 	}
+	if (fp != NULL)
+	{
+		fclose(fp);
+	}
 	remove(FILE_NAME);
 	exit(0);
 }
@@ -69,7 +74,7 @@ void* get_in_addr(struct sockaddr* sa)
 
 int main(int argc, char** argv)
 {
-	FILE* fp;
+
 	struct addrinfo hints, * servinfo, * p;
 	struct sockaddr_storage            their_addr; // connector's address information
 	socklen_t                          sin_size;
